@@ -13,7 +13,7 @@ class WorkivaServiceProvider extends ServiceProvider
         $configPath = realpath(__DIR__ . '/../config/workiva.php');
 
         $this->mergeConfigFrom($configPath, 'workiva');
-        $this->publishes([$configPath => $this->app->configPath('workiva.php'),]);
+        $this->publishes([$configPath => $this->app->configPath('workiva.php')], 'config');
 
         $this->app->bind(Client::class, function () {
             return new Client(
