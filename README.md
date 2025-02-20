@@ -70,8 +70,6 @@ while ($export === null) {
                 ->withoutRedirecting($documentUrl)
                 ->get($documentUrl);
 
-            header('Content-Type: ' . $exportResponse->header('Content-Type'));
-            header('Content-Disposition: attachment; filename="' . $this->name . '.html"');
             $export = $exportResponse->body();
         } catch (Exception $e) {
             throw new Exception('Failed to export document:' . $e->getMessage());
