@@ -59,7 +59,7 @@ sleep($retryAfter);
 
 $export = null;
 
-while (true) {
+while ($export === null) {
     $response = Workiva::get($location);
 
     if ($response->json()['status'] === OperationStatus::Completed->value) {
