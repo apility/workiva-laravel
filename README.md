@@ -73,7 +73,6 @@ while ($export === null) {
             header('Content-Type: ' . $exportResponse->header('Content-Type'));
             header('Content-Disposition: attachment; filename="' . $this->name . '.html"');
             $export = $exportResponse->body();
-            break;
         } catch (Exception $e) {
             throw new Exception('Failed to export document:' . $e->getMessage());
         }
