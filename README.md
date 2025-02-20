@@ -51,7 +51,7 @@ $request = [
     ],
 ];
 
-$response = Workiva::post(sprintf('documents/%s/export', $document->id), $request);
+$response = Workiva::withoutRedirecting()->post(sprintf('documents/%s/export', $document->id), $request);
 $location = $response->header('Location');
 $retryAfter = $response->header('Retry-After') ?? 0;
 
@@ -67,7 +67,6 @@ while ($export === null) {
         try {
             $exportResponse = Workiva::dontThrow()
                 ->http()
-                ->withoutRedirecting($documentUrl)
                 ->get($documentUrl);
 
             $export = $exportResponse->body();
